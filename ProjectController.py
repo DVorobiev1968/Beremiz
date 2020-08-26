@@ -385,8 +385,8 @@ class ProjectController(ConfigTreeNode, PLCControler):
         if self.AppFrame is not None:
             dialog = wx.MessageDialog(
                 self.AppFrame,
-                _('You must have permission to work on the project\nWork on a project copy ?'),
-                _('Error'),
+                ('You must have permission to work on the project\nWork on a project copy ?'),
+                ('Error'),
                 wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
             answer = dialog.ShowModal()
             dialog.Destroy()
@@ -463,7 +463,7 @@ class ProjectController(ConfigTreeNode, PLCControler):
         # Verify that project contains a PLCOpen program
         plc_file = os.path.join(ProjectPath, "plc.xml")
         if not os.path.isfile(plc_file):
-            return _("Chosen folder doesn't contain a program. It's not a valid project!"), True
+            return ("Chosen folder doesn't contain a program. It's not a valid project!"), True
         # Load PLCOpen file
         error = self.OpenXMLFile(plc_file)
         if error is not None:

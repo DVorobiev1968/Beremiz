@@ -25,10 +25,10 @@
 import os
 import sys
 
-
 def AbsFile(file):
     if isinstance(file, str):
         file = unicode(file, sys.getfilesystemencoding())
+        # file = str(sys.getfilesystemencoding())
     return file
 
 

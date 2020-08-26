@@ -22,12 +22,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-
 import os
 import sys
 import getopt
 import time
 import __builtin__
+# import builtins as __builtin__
+# from IPython.utils.py3compat import execfile
+# global CONSTANT
+BMZ_DBG=False   # debuger key
+
 import util.paths as paths
 
 
@@ -60,15 +64,12 @@ class BeremizIDELauncher:
                 time.sleep(0.01)
 
     def Usage(self):
-        print "Usage:"
-        print "%s [Options] [Projectpath] [Buildpath]" % sys.argv[0]
-        print ""
-        print "Supported options:"
-        print "-h --help                    Print this help"
-        print "-u --updatecheck URL         Retrieve update information by checking URL"
-        print "-e --extend PathToExtension  Extend IDE functionality by loading at start additional extensions"
-        print ""
-        print ""
+        print("Usage:")
+        print("%s [Options] [Projectpath] [Buildpath]" % sys.argv[0])
+        print("Supported options:")
+        print("-h --help                    Print this help")
+        print("-u --updatecheck URL         Retrieve update information by checking URL")
+        print("-e --extend PathToExtension  Extend IDE functionality by loading at start additional extensions")
 
     def SetCmdOptions(self):
         self.shortCmdOpts = "hu:e:"
@@ -152,7 +153,7 @@ class BeremizIDELauncher:
 
     def CheckUpdates(self):
         if self.updateinfo_url is not None:
-            updateinfo = _("Fetching %s") % self.updateinfo_url
+            updateinfo = "Fetching {0:<20}".format(self.updateinfo_url)
 
             def updateinfoproc():
                 global updateinfo
@@ -160,7 +161,7 @@ class BeremizIDELauncher:
                     import urllib2
                     updateinfo = urllib2.urlopen(self.updateinfo_url, None).read()
                 except Exception:
-                    updateinfo = _("update info unavailable.")
+                    updateinfo = ("update info unavailable.")
 
             from threading import Thread
             self.splash.SetText(text=updateinfo)

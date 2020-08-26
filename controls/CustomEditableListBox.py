@@ -37,11 +37,11 @@ class CustomEditableListBox(wx.gizmos.EditableListBox):
         listbox.Bind(wx.EVT_LIST_END_LABEL_EDIT, self.OnLabelEndEdit)
 
         for button, tooltip, call_function in [
-                (self.GetEditButton(), _("Edit item"), "_OnEditButton"),
-                (self.GetNewButton(), _("New item"), "_OnNewButton"),
-                (self.GetDelButton(), _("Delete item"), "_OnDelButton"),
-                (self.GetUpButton(), _("Move up"), "_OnUpButton"),
-                (self.GetDownButton(), _("Move down"), "_OnDownButton")]:
+                (self.GetEditButton(), ("Edit item"), "_OnEditButton"),
+                (self.GetNewButton(), ("New item"), "_OnNewButton"),
+                (self.GetDelButton(), ("Delete item"), "_OnDelButton"),
+                (self.GetUpButton(), ("Move up"), "_OnUpButton"),
+                (self.GetDownButton(), ("Move down"), "_OnDownButton")]:
             button.SetToolTipString(tooltip)
             button.Bind(wx.EVT_BUTTON, self.GetButtonPressedFunction(call_function))
 
