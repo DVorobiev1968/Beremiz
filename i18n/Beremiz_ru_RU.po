@@ -3895,3 +3895,7 @@ msgstr ""
 
 #~ msgid "second output parameter"
 #~ msgstr "второй выходной параметр"
+
+# ../ProjectController.py :279
+msgid "Start documentation..."
+msgstr "Подготовка документации..."

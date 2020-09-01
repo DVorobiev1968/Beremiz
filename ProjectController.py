@@ -60,13 +60,14 @@ from plcopen.structures import IEC_KEYWORDS
 from targets.typemapping import DebugTypesSize, LogLevelsCount, LogLevels
 from targets.typemapping import UnpackDebugBuffer
 from ConfigTreeNode import ConfigTreeNode, XSDSchemaErrorMessage
+from modelReport import PCNT
 
 base_folder = paths.AbsParentDir(__file__)
 
 MATIEC_ERROR_MODEL = re.compile(".*\.st:(\d+)-(\d+)\.\.(\d+)-(\d+): (?:error)|(?:warning) : (.*)$")
 
 ITEM_CONFNODE = 25
-
+[CATEGORY, BLOCK] = range(2)
 
 def ExtractChildrenTypesFromCatalog(catalog):
     children_types = []
@@ -264,6 +265,35 @@ class ProjectController(ConfigTreeNode, PLCControler):
         if self.DebugTimer:
             self.DebugTimer.cancel()
         self.KillDebugThread()
+
+
+    def CreateNewDocument(self):
+        infos=self.GetProjectInfos()
+        pcnt=PCNT()
+        self.logger.write(_("Start documentation...\n%s") % pcnt.getInfos(infos))
+        # Get library from project controller if not defined
+        blocktypes = self.GetBlockTypes()
+        # Refresh TreeCtrl values if a library is defined
+        if blocktypes is not None:
+            items_to_delete = []
+            for category in blocktypes:
+                category_name = category["name"]
+                for blocktype in category["list"]:
+                    # Define data to associate to block tree item
+                    comment = blocktype["comment"]
+                    block_data = {
+                        "category_name": category_name,
+                        "type":       BLOCK,
+                        "block_type": blocktype["type"],
+                        "inputs":     tuple([type
+                                             for name, type, modifier
+                                             in blocktype["inputs"]]),
+                        "extension":  (len(blocktype["inputs"])
+                                       if blocktype["extensible"] else None),
+                        "comment":    _(comment) + blocktype.get("usage", "")
+                    }
+                    pcnt.list_vars.append(block_data)
+        self.logger.write(pcnt.getList())
 
     def LoadLibraries(self):
         self.Libraries = []

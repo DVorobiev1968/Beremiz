@@ -1128,10 +1128,11 @@ class IDEFrame(wx.Frame):
         selected = self.TabsOpened.GetSelection()
         if selected != -1:
             window = self.TabsOpened.GetPage(selected)
-
         #frame = modelReport.ModelReport(parent=None, id=-1, infos=self.Controler.GetProjectInfos())
-        frame = modelReport.ModelReport(parent=None, id=-1, infos=self.Controler.GetVariableLocationTree())
-        frame.Show()
+        #frame = modelReport.ModelReport(parent=None, id=-1, infos=self.Controler.GetVariableLocationTree())
+        #frame.Show()
+        self.Controler.CreateNewDocument()
+
 
     def OnPrintMenu(self, event):
         selected = self.TabsOpened.GetSelection()
