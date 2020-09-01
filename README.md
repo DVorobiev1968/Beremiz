@@ -1,2 +1,0 @@
-# Beremiz
-Beremiz project
