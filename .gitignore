@@ -17,4 +17,5 @@
 *.py[ocd]
 *.so
 *.pyc
+*.lst
 
