@@ -45,6 +45,7 @@ from controls.DebugVariablePanel import DebugVariablePanel
 from dialogs import ProjectDialog, PouDialog, PouTransitionDialog, PouActionDialog, FindInPouDialog, SearchInProjectDialog
 from util.BitmapLibrary import GetBitmap
 
+import modelReport
 # Define PLCOpenEditor controls id
 [
     ID_PLCOPENEDITOR, ID_PLCOPENEDITORLEFTNOTEBOOK,
@@ -1122,6 +1123,15 @@ class IDEFrame(wx.Frame):
                 preview_frame.Fit()
 
                 preview_frame.Show(True)
+    """ Method of Reporting documentation for ACS"""
+    def OnReportMenu(self,event):
+        selected = self.TabsOpened.GetSelection()
+        if selected != -1:
+            window = self.TabsOpened.GetPage(selected)
+
+        #frame = modelReport.ModelReport(parent=None, id=-1, infos=self.Controler.GetProjectInfos())
+        frame = modelReport.ModelReport(parent=None, id=-1, infos=self.Controler.GetVariableLocationTree())
+        frame.Show()
 
     def OnPrintMenu(self, event):
         selected = self.TabsOpened.GetSelection()

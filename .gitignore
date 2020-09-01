@@ -4,7 +4,7 @@
 
 # Directory files #
 ###################
-*directory
+/.idea/*
 
 # Compiled source #
 ###################
@@ -16,3 +16,5 @@
 *.o
 *.py[ocd]
 *.so
+*.pyc
+

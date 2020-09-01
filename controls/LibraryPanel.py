@@ -511,7 +511,7 @@ class LibraryPanel(wx.Panel):
         if keycode == wx.WXK_UP and search_value != "":
             self.SearchInTree(search_value, "previous")
 
-        # Down key was pressed and SearchCtrl isn't empty, search for block in
+        # Down key was pressed and SearchCtrl isn't empty, search for blo
         # 'next' mode
         elif keycode == wx.WXK_DOWN and search_value != "":
             self.SearchInTree(search_value, "next")

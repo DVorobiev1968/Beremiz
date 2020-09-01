@@ -90,6 +90,8 @@ from IDEFrame import \
 
 from util.BitmapLibrary import GetBitmap
 
+# Report documentation for ACS
+import modelReport
 
 beremiz_dir = paths.AbsDir(__file__)
 
@@ -262,6 +264,9 @@ class Beremiz(IDEFrame):
         AppendMenu(parent, help='', id=wx.ID_PRINT,
                    kind=wx.ITEM_NORMAL, text=(u'Print') + '\tCTRL+P')
         parent.AppendSeparator()
+        AppendMenu(parent, help='', id=wx.ID_PREFERENCES,
+                   kind=wx.ITEM_NORMAL, text=(u'Reporting') + '\tCTRL+R')
+        parent.AppendSeparator()
         AppendMenu(parent, help='', id=wx.ID_EXIT,
                    kind=wx.ITEM_NORMAL, text=(u'Quit') + '\tCTRL+Q')
 
@@ -274,6 +279,7 @@ class Beremiz(IDEFrame):
         self.Bind(wx.EVT_MENU, self.OnPageSetupMenu, id=wx.ID_PAGE_SETUP)
         self.Bind(wx.EVT_MENU, self.OnPreviewMenu, id=wx.ID_PREVIEW)
         self.Bind(wx.EVT_MENU, self.OnPrintMenu, id=wx.ID_PRINT)
+        self.Bind(wx.EVT_MENU, self.OnReportMenu, id=wx.ID_PREFERENCES)
         self.Bind(wx.EVT_MENU, self.OnQuitMenu, id=wx.ID_EXIT)
 
         self.AddToMenuToolBar([(wx.ID_NEW, "new", (u'New'), None),
@@ -674,6 +680,8 @@ class Beremiz(IDEFrame):
             MenuToolBar.EnableTool(wx.ID_SAVE, project_modified)
             self.FileMenu.Enable(wx.ID_SAVEAS, True)
             MenuToolBar.EnableTool(wx.ID_SAVEAS, True)
+            self.FileMenu.Enable(wx.ID_PREFERENCES, True)
+            MenuToolBar.EnableTool(wx.ID_PREFERENCES, True)
             self.FileMenu.Enable(wx.ID_CLOSE_ALL, True)
         else:
             self.FileMenu.Enable(wx.ID_CLOSE, False)
@@ -686,6 +694,8 @@ class Beremiz(IDEFrame):
             self.FileMenu.Enable(wx.ID_SAVEAS, False)
             MenuToolBar.EnableTool(wx.ID_SAVEAS, False)
             self.FileMenu.Enable(wx.ID_CLOSE_ALL, False)
+            self.FileMenu.Enable(wx.ID_PREFERENCES, False)
+            MenuToolBar.EnableTool(wx.ID_PREFERENCES, False)
 
     def RefreshRecentProjectsMenu(self):
         try:
