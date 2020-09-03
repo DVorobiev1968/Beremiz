@@ -266,8 +266,94 @@ class ProjectController(ConfigTreeNode, PLCControler):
             self.DebugTimer.cancel()
         self.KillDebugThread()
 
+    def GetVarsInfos(self,var_program):
+        index=1
+        var_infos="List vars documentation...\n"
+        for varInfosObject in var_program:
+            var_infos=var_infos+"{0:d};Class:{1};Doc:{2};Name:{3}:Type{4}\n".format(index,
+                varInfosObject.Class, \
+                varInfosObject.Documentation, \
+                varInfosObject.Name, \
+                varInfosObject.Type)
+            index=index+1
+        return var_infos
+
+    def getNameInputOutput(self,l_contact):
+        return tuple([name for name, type, modifier in l_contact])
+
+    def getTypeInputOutput(self,l_contact):
+        return tuple([type for name, type, modifier in l_contact])
+
+    def getModifierInputOutput(self,l_contact):
+        return tuple([modifier for name, type, modifier in l_contact])
+
+    def LoadFB_forDB(self):
+        for eachTypeFB in self.TotalTypes:
+            pass
+    """ Выводит перечень содержимое указанного по имени FB в проекте"""
+    def ViewFB(self,typename):
+        block=self.GetBlockType(typename)
+        str_block_infos=""
+        index=0
+        str_block_infos=str_block_infos+"{0}:{4};input:{1};output:{2};" \
+                                        "usage:{3}\n".format(block.get('name'),
+                                                             self.getNameInputOutput(block.get('inputs')),
+                                                             self.getNameInputOutput(block.get('outputs')),
+                                                             block.get('usage'),
+                                                             block.get('comment'))
+        return {'count':index,'str':str_block_infos}
+
+    """ Выводит перечень всех объявленных FB в проекте"""
+    def ViewFBs(self,tagname):
+        blocks=self.GetFunctionBlockTypes(tagname)
+        str_block_infos=""
+        index=0
+        if blocks is not None:
+            for block in blocks:
+                index=index+1
+                block_infos=self.GetBlockType(block)
+                str_block_infos=str_block_infos+"{5}:{0}:{4};input:{1};output:{2};" \
+                                            "usage:{3}\n".format(block_infos.get('name'),
+                                                                 block_infos.get('input'),
+                                                                 block_infos.get('output'),
+                                                                 block_infos.get('usage'),
+                                                                 block_infos.get('comment'),
+                                                                 index)
+        return {'count':index,'str':str_block_infos}
+
+    def GetFBs(self,infos):
+        l_result=[]
+        for enum in infos.get('values'):
+            if enum.get('type')==10:
+                list_FB=enum.get('values')
+                for list_FB_ in list_FB:
+                    l_result.append(list_FB_.get('name'))
+        return l_result
 
     def CreateNewDocument(self):
+        infos=self.GetProjectInfos()
+        TagNameProgram=[enum.get('values')[0].get('tagname') for enum in infos.get('values') if enum.get('type')==11]
+        # TagNameFB=[enum.get('values')[0].get('tagname') for enum in infos.get('values') if enum.get('type')==10]
+        # TypeNameFB=[enum.get('values')[0].get('name') for enum in infos.get('values') if enum.get('type')==10]
+        TypeNameFB=self.GetFBs(infos)
+
+        var_program=self.GetEditedElementInterfaceVars(TagNameProgram[0])
+        pcnt=PCNT()
+        self.logger.write(_("Start documentation...\n%s") % pcnt.getInfos(infos))
+        self.logger.write(_("PLC_programm:%s\n") % TagNameProgram)
+        self.logger.write(_("%s") % self.GetVarsInfos(var_program))
+        count_FB=0
+        for itemFB in TypeNameFB:
+            count_FB=count_FB+1
+            str_block_infos=self.ViewFB(itemFB)
+            self.logger.write(_("%s") % str_block_infos.get('str'))
+        self.logger.write(_("Count FB: %d") % count_FB)
+
+        # str_block_infos=self.ViewFBs(TagNameProgram[0])
+        # self.logger.write(_("%s") % str_block_infos.get('str'))
+        # self.logger.write(_("Count FB: %d") % str_block_infos.get('count'))
+
+    def CreateNewDocumentAll(self):
         infos=self.GetProjectInfos()
         pcnt=PCNT()
         self.logger.write(_("Start documentation...\n%s") % pcnt.getInfos(infos))

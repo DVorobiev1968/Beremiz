@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xsi:schemaLocation="http://www.plcopen.org/xml/tc6_0201">
   <fileHeader companyName="" productName="Beremiz" productVersion="0.0" creationDateTime="2008-12-14T16:21:19" contentDescription="This example shows many features in Beremiz:&#10;&#10;   1. How to implement python extensions.&#10;   2. How to implement basic C extension.&#10;   3. How to use C code in IEC POUs.&#10;   4. How to call C functions from python code.&#10;   5. How to avoid race conditions between IEC, C and python code.&#10;   6. How to convert betweet different IEC types.&#10;"/>
-  <contentHeader name="Beremiz Python Support Tests" modificationDateTime="2016-10-12T14:15:35">
+  <contentHeader name="Beremiz Python Support Tests" modificationDateTime="2020-09-03T12:30:25">
     <coordinateInfo>
       <pageSize x="1024" y="1024"/>
       <fbd>
@@ -61,6 +61,9 @@
               <initialValue>
                 <simpleValue value="3"/>
               </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Local variable mux1_sel]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="mux2_sel">
               <type>
@@ -69,46 +72,73 @@
               <initialValue>
                 <simpleValue value="3"/>
               </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Local variable mux2_sel]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="pytest_var1">
               <type>
                 <string/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[string value]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="fefvsd">
               <type>
                 <derived name="datatype0"/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[user type]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="pytest_var2">
               <type>
                 <BOOL/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[bool type]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="py1">
               <type>
                 <derived name="python_eval"/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[python FB]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="Block1">
               <type>
                 <derived name="python_eval"/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[python FB]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="Block2">
               <type>
                 <derived name="python_eval"/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[python FB]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="Block3">
               <type>
                 <derived name="python_eval"/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[python FB]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="pytest_var3">
               <type>
                 <BOOL/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[bool]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="FromC">
               <type>
@@ -119,6 +149,9 @@
               <type>
                 <derived name="C_Pragma"/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[C pragma]]></xhtml:p>
+              </documentation>
             </variable>
           </localVars>
           <externalVars>
@@ -212,26 +245,41 @@
               <type>
                 <derived name="RS"/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[External variable]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="TUTU">
               <type>
                 <INT/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[External variable]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="TOTO">
               <type>
                 <INT/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[External variable]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="Test_Python_Var">
               <type>
                 <INT/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[External variable]]></xhtml:p>
+              </documentation>
             </variable>
             <variable name="Second_Python_Var">
               <type>
                 <INT/>
               </type>
+              <documentation>
+                <xhtml:p><![CDATA[External variable]]></xhtml:p>
+              </documentation>
             </variable>
           </externalVars>
         </interface>
@@ -606,10 +654,10 @@
                 </variable>
               </outputVariables>
             </block>
-            <inVariable localId="22" height="30" width="65" executionOrderId="0" negated="false">
+            <inVariable localId="22" height="30" width="73" executionOrderId="0" negated="false">
               <position x="945" y="390"/>
               <connectionPointOut>
-                <relPosition x="65" y="15"/>
+                <relPosition x="73" y="15"/>
               </connectionPointOut>
               <expression>mux1_sel</expression>
             </inVariable>
@@ -1123,7 +1171,7 @@ Happy hacking! ]]></xhtml:p>
               </connectionPointOut>
               <expression>23</expression>
             </inVariable>
-            <block localId="61" typeName="function0" executionOrderId="0" height="45" width="110">
+            <block localId="61" typeName="function0" executionOrderId="0" height="45" width="112">
               <position x="760" y="1170"/>
               <inputVariables>
                 <variable formalParameter="LocalVar0">
@@ -1140,7 +1188,7 @@ Happy hacking! ]]></xhtml:p>
               <outputVariables>
                 <variable formalParameter="OUT">
                   <connectionPointOut>
-                    <relPosition x="110" y="30"/>
+                    <relPosition x="112" y="30"/>
                   </connectionPointOut>
                 </variable>
               </outputVariables>
@@ -1169,10 +1217,10 @@ Happy hacking! ]]></xhtml:p>
                 <xhtml:p><![CDATA[Shows global variables access from resource configuration (res_pytest) and from project's configuration.]]></xhtml:p>
               </content>
             </comment>
-            <inVariable localId="18" height="30" width="65" executionOrderId="0" negated="false">
+            <inVariable localId="18" height="30" width="73" executionOrderId="0" negated="false">
               <position x="950" y="720"/>
               <connectionPointOut>
-                <relPosition x="65" y="15"/>
+                <relPosition x="73" y="15"/>
               </connectionPointOut>
               <expression>mux2_sel</expression>
             </inVariable>
@@ -1194,10 +1242,10 @@ Happy hacking! ]]></xhtml:p>
                 <xhtml:p><![CDATA[Shows access variable defined in python extension. ]]></xhtml:p>
               </content>
             </comment>
-            <inVariable localId="66" height="30" width="130" executionOrderId="0" negated="false">
+            <inVariable localId="66" height="30" width="135" executionOrderId="0" negated="false">
               <position x="60" y="1685"/>
               <connectionPointOut>
-                <relPosition x="130" y="15"/>
+                <relPosition x="135" y="15"/>
               </connectionPointOut>
               <expression>Test_BCD_WRONG</expression>
             </inVariable>
@@ -1237,7 +1285,7 @@ Happy hacking! ]]></xhtml:p>
                 </variable>
               </outputVariables>
             </block>
-            <outVariable localId="68" height="30" width="185" executionOrderId="0" negated="false">
+            <outVariable localId="68" height="30" width="191" executionOrderId="0" negated="false">
               <position x="580" y="1685"/>
               <connectionPointIn>
                 <relPosition x="0" y="15"/>
@@ -1289,6 +1337,9 @@ Try this out and look at value of  Test_BCD_CONVERTED variable.
             </comment>
           </FBD>
         </body>
+        <documentation>
+          <xhtml:p><![CDATA[Main PLC program]]></xhtml:p>
+        </documentation>
       </pou>
       <pou name="C_Pragma" pouType="functionBlock">
         <interface>
