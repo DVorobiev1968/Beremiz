@@ -1,13 +1,13 @@
 <application>
   <component name="libraryTable">
-    <library name="Pipenv (movies-python-neo4jrestclient) interpreter library">
+    <library name="Python 2.7 (movies-python-neo4jrestclient) interpreter library">
       <CLASSES>
         <root url="file:///usr/lib/python2.7" />
         <root url="file:///usr/lib/python2.7/plat-x86_64-linux-gnu" />
         <root url="file:///usr/lib/python2.7/lib-tk" />
         <root url="file:///usr/lib/python2.7/lib-dynload" />
-        <root url="file://$USER_HOME$/.local/share/virtualenvs/movies-python-neo4jrestclient-epUl6PeH/lib/python2.7/site-packages" />
-        <root url="file://$USER_HOME$/.cache/JetBrains/IdeaIC2020.2/python_stubs/-199181364" />
+        <root url="file://$USER_HOME$/IdeaProjects/movies-python-neo4jrestclient/venv/lib/python2.7/site-packages" />
+        <root url="file://$USER_HOME$/.cache/JetBrains/IdeaIC2020.2/python_stubs/-74013721" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/python-skeletons" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/typeshed/stdlib/2" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/typeshed/stdlib/2and3" />
@@ -20,8 +20,8 @@
         <root url="file:///usr/lib/python2.7/plat-x86_64-linux-gnu" />
         <root url="file:///usr/lib/python2.7/lib-tk" />
         <root url="file:///usr/lib/python2.7/lib-dynload" />
-        <root url="file://$USER_HOME$/.local/share/virtualenvs/movies-python-neo4jrestclient-epUl6PeH/lib/python2.7/site-packages" />
-        <root url="file://$USER_HOME$/.cache/JetBrains/IdeaIC2020.2/python_stubs/-199181364" />
+        <root url="file://$USER_HOME$/IdeaProjects/movies-python-neo4jrestclient/venv/lib/python2.7/site-packages" />
+        <root url="file://$USER_HOME$/.cache/JetBrains/IdeaIC2020.2/python_stubs/-74013721" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/python-skeletons" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/typeshed/stdlib/2" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/typeshed/stdlib/2and3" />
